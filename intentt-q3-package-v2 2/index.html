@@ -187,7 +187,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @keyframes sparkle{0%,100%{transform:translateY(0) scale(1);opacity:0.25;}50%{transform:translateY(-14px) scale(1.3);opacity:0.7;}}
   .gift-icon{position:absolute;opacity:0.16;animation:float 7s ease-in-out infinite;}
   .gift-icon svg{width:38px;height:38px;stroke:var(--gold-bright);}
-  .cta-content{position:relative;z-index:2;max-width:640px;margin:0 auto;}
+  .cta-content{position:relative;z-index:2;max-width:900px;margin:0 auto;}
   .offer-card{border:1px solid var(--line-strong);border-radius:26px;padding:44px 40px;background:linear-gradient(160deg,rgba(231,177,58,0.07),transparent 60%);margin-bottom:36px;position:relative;}
   .offer-card h3{font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
   .offer-list{display:flex;flex-direction:column;gap:12px;text-align:left;max-width:340px;margin:0 auto;}
@@ -196,6 +196,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .offer-list .chk svg{width:10px;height:10px;stroke:var(--gold-bright);}
   .cta-content h2{margin-bottom:14px;}
   .cta-content .btn{font-size:17px;padding:18px 38px;}
+  .form-intro{color:var(--dim);font-size:16px;line-height:1.6;max-width:680px;margin:14px auto 32px;}
+  .lead-form{position:relative;margin-top:36px;background:var(--white);color:#090908;padding:34px;text-align:left;border:1px solid rgba(9,9,8,.18);border-radius:4px;box-shadow:14px 14px 0 var(--gold);}
+  .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;}
+  .lead-form label>span{display:block;font-size:12px;color:#35332e;margin-bottom:8px;font-weight:600;}
+  .lead-form em{font-style:normal;color:#77736a;font-weight:400;}
+  .lead-form input,.lead-form select,.lead-form textarea{width:100%;border:1px solid #bdb8ad;background:#fff;color:#090908;padding:14px 15px;outline:none;border-radius:2px;font:inherit;}
+  .lead-form textarea{min-height:86px;resize:vertical;}
+  .lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{border-color:#090908;box-shadow:0 0 0 2px rgba(9,9,8,.08);}
+  .lead-form ::placeholder{color:#8a867d;}
+  .form-full{grid-column:1/-1;}
+  .form-submit{border:0;cursor:pointer;margin-top:22px;background:#090908;color:var(--white);}
+  .form-submit:hover{background:#25241f;color:var(--white);}
+  .form-submit:disabled{cursor:wait;opacity:.7;}
+  @media (max-width:700px){.lead-form{padding:22px;box-shadow:8px 8px 0 var(--gold);}.form-grid{grid-template-columns:1fr;}.form-full{grid-column:auto;}.form-submit{width:100%;}}
 
   footer{border-top:1px solid var(--line);padding:32px 0;position:relative;z-index:2;}
   .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
@@ -210,7 +224,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header>
   <nav>
     <div class="logo">intentt</div>
-    <a href="https://calendly.com/mariana-intentt/30min?month=2026-07" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Get My Q3 Package</a>
+    <a href="#cta" class="btn btn-primary btn-sm">Get My Q3 Package</a>
   </nav>
 </header>
 
@@ -223,7 +237,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <h1 class="reveal in">Get your Q4 creatives ready.</h1>
       <p class="sub reveal in">10 UGC videos at a special Q3 rate.</p>
       <p class="urgency reveal in">Start now, so you have time to test before the holiday season hits.</p>
-      <a href="https://calendly.com/mariana-intentt/30min?month=2026-07" target="_blank" rel="noopener" class="btn btn-primary reveal in">Get My Q3 Package</a>
+      <a href="#cta" class="btn btn-primary reveal in">Get My Q3 Package</a>
       <div class="trust-row reveal in">
         <div class="avatar-stack">
           <img src="videos/creator-01.jpg" alt="">
@@ -443,9 +457,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg></span>Free Creative Analysis</div>
       </div>
     </div>
-    <h2 class="reveal">Book a <span class="grad-text">Free Strategy Call.</span></h2>
-    <p style="color:var(--dim);font-size:15.5px;margin:14px 0 32px;" class="reveal">Delivered before Black Friday &amp; Cyber Monday.</p>
-    <a href="https://calendly.com/mariana-intentt/30min?month=2026-07" target="_blank" rel="noopener" class="btn btn-primary reveal">Book a Free Strategy Call</a>
+    <h2 class="reveal">Get the details for your <span class="grad-text">Q3 Creative Package.</span></h2>
+    <p class="form-intro reveal">Fill out this form and we’ll send you an email with pricing, availability, and more details.</p>
+    <form class="lead-form reveal" action="/api/quote" method="POST">
+      <label style="position:absolute;left:-9999px" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      <div class="form-grid">
+        <label><span>Work email</span><input type="email" name="email" placeholder="you@company.com" required></label>
+        <label><span>Brand or website</span><input type="text" name="brand" placeholder="Brand name or website URL" required></label>
+        <label><span>How many videos?</span><select name="video_quantity" required><option value="" disabled selected>Select one</option><option>Not sure yet</option><option>1 to 5 videos</option><option>6 to 10 videos</option><option>11 to 20 videos</option><option>More than 20 videos</option></select></label>
+        <label><span>Delivery timeline</span><select name="timeline" required><option value="" disabled selected>Select one</option><option>As soon as possible</option><option>Within 2 weeks</option><option>Within 30 days</option><option>I'm flexible</option></select></label>
+        <label class="form-full"><span>What are we creating content for?</span><textarea name="product" placeholder="Briefly describe the product, service, or app." required></textarea></label>
+        <label class="form-full"><span>Anything else we should know? <em>Optional</em></span><textarea name="notes" placeholder="Share any markets, languages, creator preferences, or creative requirements."></textarea></label>
+      </div>
+      <button type="submit" class="btn btn-primary form-submit">Send Me the Details</button>
+    </form>
   </div>
 </section>
 
@@ -474,9 +499,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     if(scrim) scrim.style.display = 'none';
     if(tags) tags.style.display = 'none';
   }
+
+  const quoteForm = document.querySelector('.lead-form');
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const submitButton = quoteForm.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        const formData = new FormData(quoteForm);
+        const response = await fetch('/api/quote', {
+          method: 'POST',
+          headers: {'Accept':'application/json','Content-Type':'application/json'},
+          body: JSON.stringify(Object.fromEntries(formData.entries()))
+        });
+
+        if (!response.ok) throw new Error('Submission failed');
+        if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+        window.location.href = '/thank-you.html';
+      } catch (error) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  }
 </script>
 
-<body>
+</body>
 
 <!-- Google Tag Manager (noscript) -->
 <noscript>
